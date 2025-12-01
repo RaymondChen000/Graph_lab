@@ -149,12 +149,17 @@ class Graph:
         # Initialize color dictionary , visited set, pre-order list 
         # and post-order list 
         self.visited = set()
-        set.pred = {}
-        set.pre_order = {}
-        set.post_order = {}
+        self.pred = {}
+        self.pre_order = []
+        self.post_order = []
 
         # todo by you 
-
+        #keep going for each node there are in self that were not visited. Once complete dfs for that, look if there are unvisited and do dfs on them
+        for node in self.vertices:
+            if node not in self.visited:
+                self.pred[node] = None
+                self.DFS(node)
+        
  
     # Check if a directed graph has cycle or not, and 
     # return topological order ...
