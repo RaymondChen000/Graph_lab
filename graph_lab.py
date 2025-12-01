@@ -132,14 +132,20 @@ class Graph:
         print ("Perform a DFS from src node", s)
         # todo by you 
         #adds node s to visited
+        self.color_dict[s] = "gray"
         self.visited.add(s)
+        self.pre_order.append(s)        #add to pre-order. it is root -> left -> right
         
         neighbors = self.adj[s]
         for node in neighbors:
             # if a neighbor hasn't been visited before, recursive call it. nothing happens if its in visited
             if node not in self.visited:
                 self.DFS(node)
-                
+
+        #node s finished
+        self.color_dict[s] = "black"
+        self.post_order.append(s)       #add to post-order, it is left -> right -> root
+
         return self.visited
         
 
@@ -148,18 +154,19 @@ class Graph:
         print ("Perform a complete DFS")
         # Initialize color dictionary , visited set, pre-order list 
         # and post-order list 
+        self.color_dict = {v: "white" for v in self.vertices}  #not discovered = white
         self.visited = set()
-        self.pred = {}
         self.pre_order = []
         self.post_order = []
 
         # todo by you 
         #keep going for each node there are in self that were not visited. Once complete dfs for that, look if there are unvisited and do dfs on them
         for node in self.vertices:
-            if node not in self.visited:
-                self.pred[node] = None
+            if self.color_dict[node] == "white":
+                self.pred[node] = None                 
                 self.DFS(node)
-        
+
+                     
  
     # Check if a directed graph has cycle or not, and 
     # return topological order ...
@@ -194,7 +201,9 @@ if __name__ == "__main__":
     # Todo #2: Find shortest hop path in g1 from one node to another 
 
     # Todo #3: test DFS_Graph on g1, print the pre-order and post-order 
-
+    g1.DFS_Graph()
+    print(g1.pre_order)
+    print(g1.post_order)
     # Todo #4: test DFS_TopoSort on g2, print the topological order 
 
 
