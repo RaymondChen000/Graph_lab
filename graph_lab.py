@@ -6,9 +6,12 @@ class Graph:
        #Todo: add additional data members, for BFS, DFS
        # e.g., dict d, pred, color, ... 
        #        pre-order, post-order 
+       #bfs
        self.d = {}
        self.pred = {}
-
+       #dfs 
+       self.visited = set()
+       
     def add_vertex(self, v):
        if v not in self.vertices:
             self.vertices.append (v) 
@@ -105,18 +108,50 @@ class Graph:
     def ShortestHopPath (self, s, d): 
         print ("Find shortest hop path from ", s, "to ", d) 
         # todo by you 
+        self.BFS(s)                        # calling Graph.BFS(self , s). self.d[d] with distances from s to d and self.pred[d] with predecessors of d 
+        path = []
+
+        # if no path, return empty
+        if( d not in self.d):
+            return path
+        
+        #while there is a path, it keeps adding current d to path and get the pred of the d
+        curr = d
+        while(curr is not None):            
+            path.append[curr]    # add d to path
+            curr = self.pred[curr]  # set d to its predeccessor
+
+        # reverse to get the path
+        path.reverse()
+        return path
+
 
     # perform a DFS traversal from node s, to reach all nodes
     # reachable from s 
     def DFS (self, s): 
         print ("Perform a DFS from src node", s)
         # todo by you 
+        #adds node s to visited
+        self.visited.add(s)
+        
+        neighbors = self.adj[s]
+        for node in neighbors:
+            # if a neighbor hasn't been visited before, recursive call it. nothing happens if its in visited
+            if node not in self.visited:
+                self.DFS(node)
+                
+        return self.visited
+        
 
     # perform a complete DFS traversal  
     def DFS_Graph(self):
         print ("Perform a complete DFS")
         # Initialize color dictionary , visited set, pre-order list 
         # and post-order list 
+        self.visited = set()
+        set.pred = {}
+        set.pre_order = {}
+        set.post_order = {}
 
         # todo by you 
 
@@ -150,7 +185,7 @@ if __name__ == "__main__":
 
     # Todo #1 Test BFS on g2 using node B as source node 
     # print out the d[], and pred[] dict after BFS() 
-
+    
     # Todo #2: Find shortest hop path in g1 from one node to another 
 
     # Todo #3: test DFS_Graph on g1, print the pre-order and post-order 
