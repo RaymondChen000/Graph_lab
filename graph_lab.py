@@ -162,8 +162,7 @@ class Graph:
         # todo by you 
         #keep going for each node there are in self that were not visited. Once complete dfs for that, look if there are unvisited and do dfs on them
         for node in self.vertices:
-            if self.color_dict[node] == "white":
-                self.pred[node] = None                 
+            if self.color_dict[node] == "white":               
                 self.DFS(node)
 
                      
@@ -202,8 +201,9 @@ if __name__ == "__main__":
 
     # Todo #3: test DFS_Graph on g1, print the pre-order and post-order 
     g1.DFS_Graph()
-    print(g1.pre_order)
-    print(g1.post_order)
+    print("Pre-order:", (g1.pre_order))
+    print("Post-order:", (g1.post_order))
+    print(g1.visited)
     # Todo #4: test DFS_TopoSort on g2, print the topological order 
 
 
