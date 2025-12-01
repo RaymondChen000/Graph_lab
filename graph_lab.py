@@ -174,8 +174,10 @@ class Graph:
         # Initialize color dictionary , visited set 
         self.color_dict = {v: "white" for v in self.vertices}
         self.visited = set()
-        
+
         # todo by you 
+
+
 
 # Example usage
 if __name__ == "__main__":
@@ -198,7 +200,9 @@ if __name__ == "__main__":
 
     # Todo #1 Test BFS on g2 using node B as source node 
     # print out the d[], and pred[] dict after BFS() 
-    
+    g2.BFS("B")
+    print("Distances:", g2.d)
+    print("Predeccesor:", g2.pred)
     # Todo #2: Find shortest hop path in g1 from one node to another 
 
     # Todo #3: test DFS_Graph on g1, print the pre-order and post-order 
