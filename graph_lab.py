@@ -217,10 +217,12 @@ if __name__ == "__main__":
     g1 = Graph(directed=False)
 
     # Add vertices (optional, depending on your add_edge implementation)
-    g1.vertices = ['A', 'B', 'C']
+    g1.vertices = ['A', 'B', 'C', 'D', 'E']
 
     # Add edges
     g1.add_edge('A', 'B')
+    g1.add_edge('B', 'D')
+    g1.add_edge('B', 'E')
     g1.add_edge('A', 'C') 
 
     # Print adjacency list to check
