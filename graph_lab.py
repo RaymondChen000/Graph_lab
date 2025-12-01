@@ -204,7 +204,8 @@ if __name__ == "__main__":
     print("Distances:", g2.d)
     print("Predeccesor:", g2.pred)
     # Todo #2: Find shortest hop path in g1 from one node to another 
-
+    shortest_path = g2.ShortestHopPath("B", "D")
+    print(shortest_path)
     # Todo #3: test DFS_Graph on g1, print the pre-order and post-order 
     g1.DFS_Graph()
     print("Pre-order:", (g1.pre_order))
