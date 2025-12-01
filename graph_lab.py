@@ -172,64 +172,70 @@ class Graph:
     def DAG_TopoSort(self):
         print ("DAG: cycle detection, topological sort")
         # Initialize color dictionary , visited set 
-
+        self.color_dict = {v: "white" for v in self.vertices}
+        self.visited = set()
+        
         # todo by you 
 
 # Example usage
 if __name__ == "__main__":
-    # g = Graph(directed=False)
-    # g.add_edge("A", "B")
-    # g.add_edge("A", "C")
-    # g.add_edge("B", "C")
-    # g.add_edge("C", "D")
+    g = Graph(directed=False)
+    g.add_edge("A", "B")
+    g.add_edge("A", "C")
+    g.add_edge("B", "C")
+    g.add_edge("C", "D")
 
-    # g.print()
+    g.print()
 
     
-    # g1 = Graph (directed=False)
-    # g1.initialize_from_file("dressing.txt")
-    # g1.print()
-
-    # g2 = Graph (directed=False)
-    # g2.initialize_from_file("undirected_graph.txt")
-    # g2.print()
-
-    # # Todo #1 Test BFS on g2 using node B as source node 
-    # # print out the d[], and pred[] dict after BFS() 
-    
-    # # Todo #2: Find shortest hop path in g1 from one node to another 
-
-    # # Todo #3: test DFS_Graph on g1, print the pre-order and post-order 
-    # g1.DFS_Graph()
-    # print("Pre-order:", (g1.pre_order))
-    # print("Post-order:", (g1.post_order))
-    # print(g1.visited)
-    # # Todo #4: test DFS_TopoSort on g2, print the topological order 
-
-
-    # # Todo #5: add an edge to g2 to make it cyclic, and test DFS_TopoSort on g2, 
-    # #  it should report there is a cycle 
-
-    # # Todo #6: test DFS_TopoSort 
-
-
-    # Create a simple test graph
-    g1 = Graph(directed=False)
-
-    # Add vertices (optional, depending on your add_edge implementation)
-    g1.vertices = ['A', 'B', 'C', 'D', 'E']
-
-    # Add edges
-    g1.add_edge('A', 'B')
-    g1.add_edge('B', 'D')
-    g1.add_edge('B', 'E')
-    g1.add_edge('A', 'C') 
-
-    # Print adjacency list to check
+    g1 = Graph (directed=False)
+    g1.initialize_from_file("dressing.txt")
     g1.print()
 
-    # Test DFS_Graph
+    g2 = Graph (directed=False)
+    g2.initialize_from_file("undirected_graph.txt")
+    g2.print()
+
+    # Todo #1 Test BFS on g2 using node B as source node 
+    # print out the d[], and pred[] dict after BFS() 
+    
+    # Todo #2: Find shortest hop path in g1 from one node to another 
+
+    # Todo #3: test DFS_Graph on g1, print the pre-order and post-order 
     g1.DFS_Graph()
-    print("Pre-order:", g1.pre_order)
-    print("Post-order:", g1.post_order)
-    print("Visited:", g1.visited)
+    print("Pre-order:", (g1.pre_order))
+    print("Post-order:", (g1.post_order))
+    print(g1.visited)
+    # Todo #4: test DFS_TopoSort on g2, print the topological order 
+
+
+    # Todo #5: add an edge to g2 to make it cyclic, and test DFS_TopoSort on g2, 
+    #  it should report there is a cycle 
+
+    # Todo #6: test DFS_TopoSort 
+
+
+
+
+
+
+    # # Create a simple test graph
+    # g1 = Graph(directed=False)
+
+    # # Add vertices (optional, depending on your add_edge implementation)
+    # g1.vertices = ['A', 'B', 'C', 'D', 'E']
+
+    # # Add edges
+    # g1.add_edge('A', 'B')
+    # g1.add_edge('B', 'D')
+    # g1.add_edge('B', 'E')
+    # g1.add_edge('A', 'C') 
+
+    # # Print adjacency list to check
+    # g1.print()
+
+    # # Test DFS_Graph
+    # g1.DFS_Graph()
+    # print("Pre-order:", g1.pre_order)
+    # print("Post-order:", g1.post_order)
+    # print("Visited:", g1.visited)
