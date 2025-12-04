@@ -173,9 +173,40 @@ class Graph:
         print ("DAG: cycle detection, topological sort")
         # Initialize color dictionary , visited set 
         self.color_dict = {v: "white" for v in self.vertices}
-        self.visited = set()
+        topo = []
+        has_cycle = False
 
         # todo by you 
+        def dfs(u):
+            nonlocal has_cycle
+
+            if has_cycle:
+                return
+            
+            self.color_dict[u] = "gray"
+
+            for v in self.adj[u]:
+                if self.color_dict[v] == "gray":
+                    has_cycle = True
+                    return
+                
+                if self.color_dict[v] == "white":
+                    dfs(v)
+
+            self.color_dict[u] = "black"
+            topo.append(u)
+        
+        for v in self.vertices:
+            if self.color_dict[v] == "white":
+                dfs(v)
+
+        if has_cycle:
+            print("Graph has a cycle. No topo")
+            return []
+        
+        topo.reverse()
+        return topo
+    
 
 
 
