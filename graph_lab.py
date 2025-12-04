@@ -118,7 +118,7 @@ class Graph:
         #while there is a path, it keeps adding current d to path and get the pred of the d
         curr = d
         while(curr is not None):            
-            path.append[curr]    # add d to path
+            path.append(curr)    # add d to path
             curr = self.pred[curr]  # set d to its predeccessor
 
         # reverse to get the path
@@ -173,42 +173,36 @@ class Graph:
         print ("DAG: cycle detection, topological sort")
         # Initialize color dictionary , visited set 
         self.color_dict = {v: "white" for v in self.vertices}
-        topo = []
         has_cycle = False
+        topo = []
 
-        # todo by you 
-        def dfs(u):
+        def DFS(node):
             nonlocal has_cycle
 
             if has_cycle:
                 return
             
-            self.color_dict[u] = "gray"
-
-            for v in self.adj[u]:
-                if self.color_dict[v] == "gray":
+            self.color_dict[node] = "gray"
+             
+            nbrlist = self.adj[node]
+            for nbr in nbrlist:
+                if self.color_dict[nbr] == "white":
+                    DFS(nbr)
+                    if has_cycle:
+                        return
+                elif self.color_dict[nbr] == "gray":
                     has_cycle = True
                     return
                 
-                if self.color_dict[v] == "white":
-                    dfs(v)
-
-            self.color_dict[u] = "black"
-            topo.append(u)
+            self.color_dict[node] = "black"
+            topo.append(node)
         
         for v in self.vertices:
             if self.color_dict[v] == "white":
-                dfs(v)
-
-        if has_cycle:
-            print("Graph has a cycle. No topo")
-            return []
+                DFS(v)
         
         topo.reverse()
-        return topo
-    
-
-
+        return topo, has_cycle
 
 # Example usage
 if __name__ == "__main__":
@@ -241,37 +235,11 @@ if __name__ == "__main__":
     g1.DFS_Graph()
     print("Pre-order:", (g1.pre_order))
     print("Post-order:", (g1.post_order))
-    print(g1.visited)
     # Todo #4: test DFS_TopoSort on g2, print the topological order 
-
+    print(g2.DAG_TopoSort())
 
     # Todo #5: add an edge to g2 to make it cyclic, and test DFS_TopoSort on g2, 
     #  it should report there is a cycle 
 
     # Todo #6: test DFS_TopoSort 
-
-
-
-
-
-
-    # # Create a simple test graph
-    # g1 = Graph(directed=False)
-
-    # # Add vertices (optional, depending on your add_edge implementation)
-    # g1.vertices = ['A', 'B', 'C', 'D', 'E']
-
-    # # Add edges
-    # g1.add_edge('A', 'B')
-    # g1.add_edge('B', 'D')
-    # g1.add_edge('B', 'E')
-    # g1.add_edge('A', 'C') 
-
-    # # Print adjacency list to check
-    # g1.print()
-
-    # # Test DFS_Graph
-    # g1.DFS_Graph()
-    # print("Pre-order:", g1.pre_order)
-    # print("Post-order:", g1.post_order)
-    # print("Visited:", g1.visited)
+    
