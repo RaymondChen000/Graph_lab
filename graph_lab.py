@@ -225,11 +225,11 @@ if __name__ == "__main__":
 
     # Todo #1 Test BFS on g2 using node B as source node 
     # print out the d[], and pred[] dict after BFS() 
-    g2.BFS("B")
+    g2.BFS("A")
     print("Distances:", g2.d)
     print("Predeccesor:", g2.pred)
     # Todo #2: Find shortest hop path in g1 from one node to another 
-    shortest_path = g2.ShortestHopPath("B", "D")
+    shortest_path = g2.ShortestHopPath("A", "J")
     print(shortest_path)
     # Todo #3: test DFS_Graph on g1, print the pre-order and post-order 
     g1.DFS_Graph()
@@ -240,6 +240,22 @@ if __name__ == "__main__":
 
     # Todo #5: add an edge to g2 to make it cyclic, and test DFS_TopoSort on g2, 
     #  it should report there is a cycle 
-
+    g2.add_edge("H", "B")
+    print(g2.DAG_TopoSort())
     # Todo #6: test DFS_TopoSort 
-    
+
+    # Create a directed graph
+    g3 = Graph(directed=True)
+
+    # Add edges
+    g3.add_edge("A", "B")
+    g3.add_edge("A", "C")
+    g3.add_edge("B", "D")
+    g3.add_edge("C", "D")
+    g3.add_edge("D", "E")
+    print(g3.DAG_TopoSort())
+
+
+    g3.add_edge("E", "B")  # creates a cycle: B → D → E → B
+
+    print(g3.DAG_TopoSort())
